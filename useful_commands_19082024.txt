@@ -1,0 +1,16 @@
+USEFUL COMMANDS (19-08-2024)
+
+1. Visual Studio
+    * Como crear un proyecto de spring boot?
+        - Windows
+            1. Descargar e instalar un java jdk 
+            2. Ingresar al ide visual studio
+                1. Ir a Extensions
+                2. Buscar e instalar
+                  1. Extension Pack for Java
+                  2. Spring boot tools
+          3. Ir al cuadro de busqueda de archivos
+          4. Seleccionar las opciones y diligenciar la informacion requerida
+            1. Show and run commands
+            2. Spring initializr: create a maven project
+            3. Llenar el resto de informacion solicitada
