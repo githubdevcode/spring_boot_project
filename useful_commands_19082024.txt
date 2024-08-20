@@ -21,6 +21,9 @@ USEFUL COMMANDS (19-08-2024)
          - Todos los metodos en un servicio son transaccionales, es decir, se deben
             anotar con la anotacion 
             @org.springframework.transaction.annotation.Transactional
+         - Un servicio puede contener multiples objetos servicio con el de poder
+            comunicarse para poder llevar a cabo cada logica del negocio que se
+            encuentra en cada uno de sus metodos.
       * Repositories
          - Un repositorio encapsula todos los metodos de acceso a datos relativos
             a un objeto del dominio.
