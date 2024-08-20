@@ -24,6 +24,8 @@ USEFUL COMMANDS (19-08-2024)
          - Un servicio puede contener multiples objetos servicio con el de poder
             comunicarse para poder llevar a cabo cada logica del negocio que se
             encuentra en cada uno de sus metodos.
+         - Se pueden inyectar diferentes beans necesarios para la ejeucion de los
+            metodos de un servicio definiendolos como parametros de un constructor.
       * Repositories
          - Un repositorio encapsula todos los metodos de acceso a datos relativos
             a un objeto del dominio.
