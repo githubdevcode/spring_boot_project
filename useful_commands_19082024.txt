@@ -14,3 +14,20 @@ USEFUL COMMANDS (19-08-2024)
             1. Show and run commands
             2. Spring initializr: create a maven project
             3. Llenar el resto de informacion solicitada
+2. Relativo a componentes
+      * Services
+         - Un servicio encapsula toda la logica relativa a una entidad del dominio.
+         - Un servicio no contiene algun estado.
+         - Todos los metodos en un servicio son transaccionales, es decir, se deben
+            anotar con la anotacion 
+            @org.springframework.transaction.annotation.Transactional
+      * Repositories
+         - Un repositorio encapsula todos los metodos de acceso a datos relativos
+            a un objeto del dominio.
+         - Un repositorio puede extender alguna de las dos interfaces del framework 
+            spring data con el fin de heredar diferentes metodos de acceso a datos.
+               1. CrudRepository: Es una interfaz que contiene metodos basicos de
+                     acceso a datos.
+               2. JpaRepository: Es una interfaz que contiene los metodos de
+                     acceso a datos que se encuentran en la interfaz CrudRepository
+                     y adicionalmente agrega metodos para paginar filas y ordenarlas.
