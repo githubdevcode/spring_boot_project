@@ -15,6 +15,17 @@ USEFUL COMMANDS (19-08-2024)
             2. Spring initializr: create a maven project
             3. Llenar el resto de informacion solicitada
 2. Relativo a componentes
+      * Controllers
+         - Un controlador se encarga de recibir peticiones HTTP provenientes del
+            frontend y de remitir esas peticiones a uno o mas servicios con
+            el fin de llevar a cabo una logica del negocio cualquiera.
+         - Un controlador puede contener una de dos anotaciones posibles dependiendo
+            de su proposito:
+               1. @RestController: Esta anotacion es utilizada para definir controladores
+                     que se encargan de recibir respuestas HTTP de un frontend.
+               2. @Controller: Esta anotacion es utilizada para definir controladores
+                     que se encargan de recibir peticiones de otro tipo de componentes.
+                     Por ejemplo, vistas jsp o thymeleaf.
       * Services
          - Un servicio encapsula toda la logica relativa a una entidad del dominio.
          - Un servicio no contiene algun estado.
