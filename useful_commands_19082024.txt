@@ -26,6 +26,11 @@ USEFUL COMMANDS (19-08-2024)
                2. @Controller: Esta anotacion es utilizada para definir controladores
                      que se encargan de recibir peticiones de otro tipo de componentes.
                      Por ejemplo, vistas jsp o thymeleaf.
+         - Adicional
+               1. Se puede utilizar la anotacion @CrossOrigin antes de una clase java
+                     controladora para implementar una politica CORS (Cross Origin
+                     Resource) con el fin permitir el acceso de otros dominios a los
+                     recursos declarados.
       * Services
          - Un servicio encapsula toda la logica relativa a una entidad del dominio.
          - Un servicio no contiene algun estado.
