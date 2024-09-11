@@ -52,3 +52,28 @@ USEFUL COMMANDS (19-08-2024)
                2. JpaRepository: Es una interfaz que contiene los metodos de
                      acceso a datos que se encuentran en la interfaz CrudRepository
                      y adicionalmente agrega metodos para paginar filas y ordenarlas.
+
+3. Paginacion
+      * Retorno
+         - Explicacion
+            % Es un documento json que consiste de multiples partes:
+               1. totalPages: Es el numero total de paginas las cuales contienen cada uno de los objetos
+                     provenientes de la base de datos.
+               2. totalElements: Es el numero total de objetos que se encuentran en la base de datos.
+               3. size: Es el tamaño maximo de cada pagina.
+               4. content: Contiene todos objetos provenientes de la base de datos.
+               5. number: Es el numero de la pagina actual.
+               6. sort: Contiene atributos que indican si la pagina se encuentran organizadas.
+               7. first: Indica si la pagina devuelta contiene el ultimo objeto.
+               8. last: Indica si la pagina devuelta contiene el primer objeto.
+               9. numberOfElements: Es el numero total de elementos en el atributo content.
+               10. pageable: Es un atributo que contiene atributos sobre la pagina actual.
+                     & Atributos
+                        1. pageNumber: Indica el numero de la pagina actual.
+                        2. pageSize: Indica el tamaño total de cada pagina.
+                        3. sort: Contiene atributos que indican si la pagina se encuentra organizada.
+                        4. offset: Es un numero el cual indica la posicion desde la cual se empiezan a
+                              obtener registros en una consulta. Este atributo esta relacionado con la
+                              clausula LIMIT.
+               11. empty: Es un atributo que indica si la pagina esta vacia o no lo esta.
+                        
