@@ -84,17 +84,28 @@ USEFUL COMMANDS (19-08-2024)
          			<artifactId>spring-boot-starter-security</artifactId>
          	  </dependency>
       * Configuracion
-         - Ejemplo
-            % Codigo  
-               @Bean
-            	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            		return http.authorizeHttpRequests(authz ->
-            			authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}").permitAll()
-            			.anyRequest().authenticated()
-            		).csrf(config -> config.disable())
-            		.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            			.build();
-            	}
+         - Ejemplo de configuracion
+            % Clase de configuracion
+
+               import org.springframework.context.annotation.Bean;
+               import org.springframework.context.annotation.Configuration;
+               import org.springframework.http.HttpMethod;
+               import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+               import org.springframework.security.config.http.SessionCreationPolicy;
+               import org.springframework.security.web.SecurityFilterChain;
+
+               @Configuration
+               public class SpringSecurityConfig {
+                  @Bean
+               	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+               		return http.authorizeHttpRequests(authz ->
+               			authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}").permitAll()
+               			.anyRequest().authenticated()
+               		).csrf(config -> config.disable())
+               		.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+               			.build();
+               	}
+               }
             % Explicacion
                1. Se autorizan dos solicitudes http a dos url diferentes como "/api/users" o "/api/users/page/{page}"
                   el resto de las solicitudes son permitidas solo si el usuario se encuentra autenticado.
