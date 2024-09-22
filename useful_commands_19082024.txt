@@ -76,4 +76,32 @@ USEFUL COMMANDS (19-08-2024)
                               obtener registros en una consulta. Este atributo esta relacionado con la
                               clausula LIMIT.
                11. empty: Es un atributo que indica si la pagina esta vacia o no lo esta.
-                        
+4. Spring Security
+      * Maven
+         - Dependencia
+            % <dependency>
+         			<groupId>org.springframework.boot</groupId>
+         			<artifactId>spring-boot-starter-security</artifactId>
+         	  </dependency>
+      * Configuracion
+         - Ejemplo
+            % Codigo  
+               @Bean
+            	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            		return http.authorizeHttpRequests(authz ->
+            			authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}").permitAll()
+            			.anyRequest().authenticated()
+            		).csrf(config -> config.disable())
+            		.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            			.build();
+            	}
+            % Explicacion
+               1. Se autorizan dos solicitudes http a dos url diferentes como "/api/users" o "/api/users/page/{page}"
+                  el resto de las solicitudes son permitidas solo si el usuario se encuentra autenticado.
+               2. Se inhabilita la gestion de una vulnerabilidad por parte de spring security llamada ataque de sitio 
+                  cruzado la cual fuerza a un usuario autenticado en una aplicacion a realizar acciones no deseadas
+                  como transferir fondos, etc.. Por ejemplo, un atacante inyecta una etiqueta html img en un campo de
+                  texto que acepta html en una pagina html de manera que un usuario autenticado puede comprometer sus
+                  credenciales.
+               3. Se indica a spring security que no cree un objeto HttpSession para almacenar la autenticacion de un
+                  usuario entre solicitudes http sino que por cada solicitud http se autentique al usuario.
