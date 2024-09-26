@@ -99,17 +99,23 @@ USEFUL COMMANDS (19-08-2024)
                   public class SpringSecurityConfig {
                      @Bean
                   	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-                  		return http.authorizeHttpRequests(authz ->
-                  			authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}").permitAll()
-                  			.anyRequest().authenticated()
-                  		).csrf(config -> config.disable())
-                  		.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                  			.build();
+                  		return http
+                     				.authorizeHttpRequests(
+                     						authz -> authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}")
+                     								.permitAll().requestMatchers(HttpMethod.GET, "/api/users/{id}")
+                     								.hasAnyRole("USER", "ADMIN").requestMatchers(HttpMethod.POST, "/api/users")
+                     								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.PUT, "/api/users/{id}")
+                     								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.DELETE, "/api/users/{id}")
+                     								.hasAnyRole("ADMIN").anyRequest().authenticated())
+                     				.csrf(config -> config.disable())
+                     				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                     				.build();
                   	}
                   }
                % Explicacion
-                  1. Se autorizan dos solicitudes http a dos url diferentes como "/api/users" o "/api/users/page/{page}"
-                     el resto de las solicitudes son permitidas solo si el usuario se encuentra autenticado.
+                  1. Se autorizan dos solicitudes http a varias url diferentes como "/api/users" o "/api/users/page/{page}".
+                     Ademas se autorizan varias solicitudes http adicionales si el usuario tiene rol USER o ADMIN o ambos.
+                     El resto de las solicitudes son permitidas solo si el usuario se encuentra autenticado.
                   2. Se inhabilita la gestion de una vulnerabilidad por parte de spring security llamada ataque de sitio 
                      cruzado la cual fuerza a un usuario autenticado en una aplicacion a realizar acciones no deseadas
                      como transferir fondos, etc.. Por ejemplo, un atacante inyecta una etiqueta html img en un campo de
@@ -117,3 +123,10 @@ USEFUL COMMANDS (19-08-2024)
                      credenciales.
                   3. Se indica a spring security que no cree un objeto HttpSession para almacenar la autenticacion de un
                      usuario entre solicitudes http sino que por cada solicitud http se autentique al usuario.
+      * Autenticacion con JWT Authentication Filter
+         - Cosas importantes
+            1. La clase JwtAuthenticationFilter por debajo llama a la clase JpaUserDetailsService para con el fin de poder 
+               autenticar el usuario que es descrito por las credenciales recibidas que se encuentran en el objeto User.
+               El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
+               base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
+               cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
