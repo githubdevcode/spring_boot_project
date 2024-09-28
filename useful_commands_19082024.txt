@@ -130,3 +130,27 @@ USEFUL COMMANDS (19-08-2024)
                El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
                base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
                cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
+            2. En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
+               del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
+               que pueda utilizarlo en solicitudes http siguientes.
+            3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
+               siguientes:
+                  & pom.xml
+                     @ <dependency>
+               			<groupId>io.jsonwebtoken</groupId>
+               			<artifactId>jjwt-api</artifactId>
+               			<version>0.12.6</version>
+               		 </dependency>
+               		 <dependency>
+               			<groupId>io.jsonwebtoken</groupId>
+               			<artifactId>jjwt-impl</artifactId>
+               			<version>0.12.6</version>
+               			<scope>runtime</scope>
+               		 </dependency>
+               		 <dependency>
+               			<groupId>io.jsonwebtoken</groupId>
+               			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is
+               			preferred -->
+               			<version>0.12.6</version>
+               			<scope>runtime</scope>
+               		 </dependency>
