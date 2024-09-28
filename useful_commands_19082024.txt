@@ -133,6 +133,9 @@ USEFUL COMMANDS (19-08-2024)
             2. En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
                del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
                que pueda utilizarlo en solicitudes http siguientes.
+                  & NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
+                     clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
+                     como en su validacion.
             3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
                siguientes:
                   & pom.xml
