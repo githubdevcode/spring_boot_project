@@ -88,15 +88,36 @@ USEFUL COMMANDS (19-08-2024)
             - Ejemplo de configuracion
                % Clase de configuracion
    
+                  import org.springframework.beans.factory.annotation.Autowired;
                   import org.springframework.context.annotation.Bean;
                   import org.springframework.context.annotation.Configuration;
                   import org.springframework.http.HttpMethod;
+                  import org.springframework.security.authentication.AuthenticationManager;
+                  import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
                   import org.springframework.security.config.annotation.web.builders.HttpSecurity;
                   import org.springframework.security.config.http.SessionCreationPolicy;
+                  import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+                  import org.springframework.security.crypto.password.PasswordEncoder;
                   import org.springframework.security.web.SecurityFilterChain;
+                  
+                  import com.springboot.backend.andres.userapp.usersbackend.users_backend.auth.filter.JwtAuthenticationFilter;
    
                   @Configuration
                   public class SpringSecurityConfig {
+
+                     @Autowired
+                  	private AuthenticationConfiguration authenticationConfiguration;
+                  	
+                  	@Bean
+                  	AuthenticationManager authenticationManager() throws Exception {
+                  		return authenticationConfiguration.getAuthenticationManager();
+                  	}
+                  	
+                  	@Bean
+                  	PasswordEncoder passwordEncoder() {
+                  		return new BCryptPasswordEncoder();
+                  	}
+                     
                      @Bean
                   	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                   		return http
@@ -107,6 +128,7 @@ USEFUL COMMANDS (19-08-2024)
                      								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.PUT, "/api/users/{id}")
                      								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.DELETE, "/api/users/{id}")
                      								.hasAnyRole("ADMIN").anyRequest().authenticated())
+                     				.addFilter(new JwtAuthenticationFilter(authenticationManager()))
                      				.csrf(config -> config.disable())
                      				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                      				.build();
@@ -130,12 +152,22 @@ USEFUL COMMANDS (19-08-2024)
                El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
                base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
                cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
-            2. En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
-               del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
-               que pueda utilizarlo en solicitudes http siguientes.
-                  & NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
-                     clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
-                     como en su validacion.
+            2. Relativo a metodos
+                  1. En el metodo JwtAuthenticationFilter.attemptAuthentication se extraen las credenciales del usuario como
+                     el usuario y la contraseña y se procede a autenticar el usuario por medio de la comparacion con el usuario
+                     en la base de datos.
+                        & NOTA: Por debajo se llama al metodo JpaUserDetailsService.loadUserByUsername para obtener el usuario
+                           de la base de datos, comparar datos del usuario de la base de datos como el nombre de usuario y la 
+                           contraseña con las credenciales enviadas desde el cliente y generar un token jwt si las credenciales
+                           obtenidas desde el cliente son validas.
+                  2. En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
+                     del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
+                     que pueda utilizarlo en solicitudes http siguientes.
+                     & NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
+                        clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
+                        como en su validacion.
+                  3. En el metodo JwtAuthenticationFilter.unsuccessfulAuthentication se declara la logica relativa a la generacion
+                     de una respuesta de error cuando las credenciales de un usuario son invalidas.
             3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
                siguientes:
                   & pom.xml
