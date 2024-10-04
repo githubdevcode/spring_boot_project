@@ -189,3 +189,10 @@ USEFUL COMMANDS (19-08-2024)
                			<version>0.12.6</version>
                			<scope>runtime</scope>
                		 </dependency>
+      * Autenticacion con JWT Validation Filter
+         - Cosas importantes
+            1. El metodo JwtValidationFilter.doFilterInternal se encarga de contener la logica relativa a la validacion de tokens 
+               jwt los cuales se encuentran en la cabecera Authorization en cada solicitud http que intente acceder a un recurso 
+               protegido como puede ser un endpoint rest. Cada token jwt es validado con una llave secreta jwt global. Una vez
+               que el token es validado se extraen las diferentes propiedades que se encuentran en el documento json del token
+               jwt.
