@@ -152,6 +152,8 @@ USEFUL COMMANDS (19-08-2024)
                El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
                base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
                cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
+                  - NOTA: La clase JwtAuthenticationFilter es una implementacion de la clase UsernamePasswordAuthenticationFilter
+                     el cual se ejecuta cada vez que se envia una solicitud http al endpoint /login
             2. Relativo a metodos
                   1. En el metodo JwtAuthenticationFilter.attemptAuthentication se extraen las credenciales del usuario como
                      el usuario y la contraseña y se procede a autenticar el usuario por medio de la comparacion con el usuario
@@ -196,3 +198,5 @@ USEFUL COMMANDS (19-08-2024)
                protegido como puede ser un endpoint rest. Cada token jwt es validado con una llave secreta jwt global. Una vez
                que el token es validado se extraen las diferentes propiedades que se encuentran en el documento json del token
                jwt.
+                  - NOTA: La clase JwtValidationFilter es la implementacion de un filtro el cual es llamado BasicAuthenticationFilter
+                     el cual se ejecuta cada vez que en una solicitud http viene incluida la cabecera Authorization.
