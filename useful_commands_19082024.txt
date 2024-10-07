@@ -193,58 +193,64 @@ USEFUL COMMANDS (19-08-2024)
                      credenciales.
                   6. Se indica a spring security que no cree un objeto HttpSession para almacenar la autenticacion de un
                      usuario entre solicitudes http sino que por cada solicitud http se autentique al usuario.
-      * Autenticacion con JWT Authentication Filter
-         - Cosas importantes
-            1. La clase JwtAuthenticationFilter por debajo llama a la clase JpaUserDetailsService para con el fin de poder 
-               autenticar el usuario que es descrito por las credenciales recibidas que se encuentran en el objeto User.
-               El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
-               base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
-               cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
-                  - NOTA: La clase JwtAuthenticationFilter es una implementacion de la clase UsernamePasswordAuthenticationFilter
-                     el cual se ejecuta cada vez que se envia una solicitud http al endpoint /login
-            2. Relativo a metodos
-                  1. En el metodo JwtAuthenticationFilter.attemptAuthentication se extraen las credenciales del usuario como
-                     el usuario y la contraseña y se procede a autenticar el usuario por medio de la comparacion con el usuario
-                     en la base de datos.
-                        & NOTA: Por debajo se llama al metodo JpaUserDetailsService.loadUserByUsername para obtener el usuario
-                           de la base de datos, comparar datos del usuario de la base de datos como el nombre de usuario y la 
-                           contraseña con las credenciales enviadas desde el cliente y generar un token jwt si las credenciales
-                           obtenidas desde el cliente son validas.
-                  2. En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
-                     del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
-                     que pueda utilizarlo en solicitudes http siguientes.
-                     & NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
-                        clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
-                        como en su validacion.
-                  3. En el metodo JwtAuthenticationFilter.unsuccessfulAuthentication se declara la logica relativa a la generacion
-                     de una respuesta de error cuando las credenciales de un usuario son invalidas.
-            3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
-               siguientes:
-                  & pom.xml
-                     @ <dependency>
-               			<groupId>io.jsonwebtoken</groupId>
-               			<artifactId>jjwt-api</artifactId>
-               			<version>0.12.6</version>
-               		 </dependency>
-               		 <dependency>
-               			<groupId>io.jsonwebtoken</groupId>
-               			<artifactId>jjwt-impl</artifactId>
-               			<version>0.12.6</version>
-               			<scope>runtime</scope>
-               		 </dependency>
-               		 <dependency>
-               			<groupId>io.jsonwebtoken</groupId>
-               			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is
-               			preferred -->
-               			<version>0.12.6</version>
-               			<scope>runtime</scope>
-               		 </dependency>
-      * Autenticacion con JWT Validation Filter
-         - Cosas importantes
-            1. El metodo JwtValidationFilter.doFilterInternal se encarga de contener la logica relativa a la validacion de tokens 
-               jwt los cuales se encuentran en la cabecera Authorization en cada solicitud http que intente acceder a un recurso 
-               protegido como puede ser un endpoint rest. Cada token jwt es validado con una llave secreta jwt global. Una vez
-               que el token es validado se extraen las diferentes propiedades que se encuentran en el documento json del token
-               jwt.
-                  - NOTA: La clase JwtValidationFilter es la implementacion de un filtro el cual es llamado BasicAuthenticationFilter
-                     el cual se ejecuta cada vez que en una solicitud http viene incluida la cabecera Authorization.
+      * Relativo a la libreria JWT
+         - Explicacion
+               % La libreria JWT permite generar tokens y validar tokens que permiten acceder a recursos http como puede
+                  ser un endpoint rest. El token JWT sirve para autenticar una peticion http cada vez que se requiera acceder
+                  a un recurso http.
+         - Importante   
+            & Autenticacion con JWT Authentication Filter
+               % Cosas importantes
+                  1. La clase JwtAuthenticationFilter por debajo llama a la clase JpaUserDetailsService para con el fin de poder 
+                     autenticar el usuario que es descrito por las credenciales recibidas que se encuentran en el objeto User.
+                     El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
+                     base de datos. Si las ambas credenciales coinciden se genera un token JWT y es entregado al usuario en el
+                     cliente del frontend de lo contrario se envia un mensaje de error al cliente del frontend.
+                        @ NOTA: La clase JwtAuthenticationFilter es una implementacion de la clase UsernamePasswordAuthenticationFilter
+                           el cual se ejecuta cada vez que se envia una solicitud http al endpoint /login
+                  2. Relativo a metodos
+                        2.1 En el metodo JwtAuthenticationFilter.attemptAuthentication se extraen las credenciales del usuario como
+                           el usuario y la contraseña y se procede a autenticar el usuario por medio de la comparacion con el usuario
+                           en la base de datos.
+                              @ NOTA: Por debajo se llama al metodo JpaUserDetailsService.loadUserByUsername para obtener el usuario
+                                 de la base de datos, comparar datos del usuario de la base de datos como el nombre de usuario y la 
+                                 contraseña con las credenciales enviadas desde el cliente y generar un token jwt si las credenciales
+                                 obtenidas desde el cliente son validas.
+                        2.2 En el metodo JwtAuthenticationFilter.successfulAuthentication se declara la logica relativa a la generacion
+                           del token jwt por medio del uso de la libreria jjwt. El token jwt generado se devuelve al cliente para
+                           que pueda utilizarlo en solicitudes http siguientes.
+                              @ NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
+                                 clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
+                                 como en su validacion.
+                        2.3 En el metodo JwtAuthenticationFilter.unsuccessfulAuthentication se declara la logica relativa a la generacion
+                           de una respuesta de error cuando las credenciales de un usuario son invalidas.
+                  3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
+                     siguientes:
+                        & pom.xml
+                           @ <dependency>
+                     			<groupId>io.jsonwebtoken</groupId>
+                     			<artifactId>jjwt-api</artifactId>
+                     			<version>0.12.6</version>
+                     		 </dependency>
+                     		 <dependency>
+                     			<groupId>io.jsonwebtoken</groupId>
+                     			<artifactId>jjwt-impl</artifactId>
+                     			<version>0.12.6</version>
+                     			<scope>runtime</scope>
+                     		 </dependency>
+                     		 <dependency>
+                     			<groupId>io.jsonwebtoken</groupId>
+                     			<artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is
+                     			preferred -->
+                     			<version>0.12.6</version>
+                     			<scope>runtime</scope>
+                     		 </dependency>
+            & Validacion con JWT Validation Filter
+               % Cosas importantes
+                  1. El metodo JwtValidationFilter.doFilterInternal se encarga de contener la logica relativa a la validacion de tokens 
+                     jwt los cuales se encuentran en la cabecera Authorization en cada solicitud http que intente acceder a un recurso 
+                     protegido como puede ser un endpoint rest. Cada token jwt es validado con una llave secreta jwt global. Una vez
+                     que el token es validado se extraen las diferentes propiedades que se encuentran en el documento json del token
+                     jwt.
+                        & NOTA: La clase JwtValidationFilter es la implementacion de un filtro el cual es llamado BasicAuthenticationFilter
+                           el cual se ejecuta cada vez que en una solicitud http viene incluida la cabecera Authorization.
