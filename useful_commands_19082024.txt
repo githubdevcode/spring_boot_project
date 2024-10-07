@@ -88,9 +88,13 @@ USEFUL COMMANDS (19-08-2024)
             - Ejemplo de configuracion
                % Clase de configuracion
    
+                  import java.util.Arrays;
+
                   import org.springframework.beans.factory.annotation.Autowired;
+                  import org.springframework.boot.web.servlet.FilterRegistrationBean;
                   import org.springframework.context.annotation.Bean;
                   import org.springframework.context.annotation.Configuration;
+                  import org.springframework.core.Ordered;
                   import org.springframework.http.HttpMethod;
                   import org.springframework.security.authentication.AuthenticationManager;
                   import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -99,13 +103,18 @@ USEFUL COMMANDS (19-08-2024)
                   import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
                   import org.springframework.security.crypto.password.PasswordEncoder;
                   import org.springframework.security.web.SecurityFilterChain;
+                  import org.springframework.web.cors.CorsConfiguration;
+                  import org.springframework.web.cors.CorsConfigurationSource;
+                  import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+                  import org.springframework.web.filter.CorsFilter;
                   
                   import com.springboot.backend.andres.userapp.usersbackend.users_backend.auth.filter.JwtAuthenticationFilter;
-   
+                  import com.springboot.backend.andres.userapp.usersbackend.users_backend.auth.filter.JwtValidationFilter;
+                  
                   @Configuration
                   public class SpringSecurityConfig {
-
-                     @Autowired
+                  
+                  	@Autowired
                   	private AuthenticationConfiguration authenticationConfiguration;
                   	
                   	@Bean
@@ -117,33 +126,72 @@ USEFUL COMMANDS (19-08-2024)
                   	PasswordEncoder passwordEncoder() {
                   		return new BCryptPasswordEncoder();
                   	}
-                     
-                     @Bean
+                  	
+                  	@Bean
                   	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                   		return http
-                     				.authorizeHttpRequests(
-                     						authz -> authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}")
-                     								.permitAll().requestMatchers(HttpMethod.GET, "/api/users/{id}")
-                     								.hasAnyRole("USER", "ADMIN").requestMatchers(HttpMethod.POST, "/api/users")
-                     								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.PUT, "/api/users/{id}")
-                     								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.DELETE, "/api/users/{id}")
-                     								.hasAnyRole("ADMIN").anyRequest().authenticated())
-                     				.addFilter(new JwtAuthenticationFilter(authenticationManager()))
-                     				.csrf(config -> config.disable())
-                     				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                     				.build();
+                  				.authorizeHttpRequests(
+                  						authz -> authz.requestMatchers(HttpMethod.GET, "/api/users", "/api/users/page/{page}")
+                  								.permitAll().requestMatchers(HttpMethod.GET, "/api/users/{id}")
+                  								.hasAnyRole("USER", "ADMIN").requestMatchers(HttpMethod.POST, "/api/users")
+                  								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.PUT, "/api/users/{id}")
+                  								.hasAnyRole("ADMIN").requestMatchers(HttpMethod.DELETE, "/api/users/{id}")
+                  								.hasAnyRole("ADMIN").anyRequest().authenticated())
+                  				.cors(cors -> cors.configurationSource(configurationSource()))
+                  				.addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                  				.addFilter(new JwtValidationFilter(authenticationManager()))
+                  				.csrf(config -> config.disable())
+                  				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                  				.build();
                   	}
+                  	
+                  	@Bean
+                  	CorsConfigurationSource configurationSource() {
+                  		CorsConfiguration config = new CorsConfiguration();
+                  		config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+                  		config.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE"));
+                  		
+                  		config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+                  		config.setAllowCredentials(true);
+                  		
+                  		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                  		source.registerCorsConfiguration("/**", config);
+                  		return source;
+                  	}
+                  	
+                  	/* NOTA: La siguiente linea de codigo es opcional ya que el objeto CorsConfigurer crea un objeto CorsFilter por defecto
+                  	 * si se invoca el metodo configurationSource con un objeto CorsConfigurationSource 
+                  	@Bean
+                  	FilterRegistrationBean<CorsFilter> corsFilter() {
+                  		FilterRegistrationBean<CorsFilter> corsBean = new FilterRegistrationBean<>(new CorsFilter(this.configurationSource()));
+                  		corsBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+                  		return corsBean;
+                  	}*/
                   }
                % Explicacion
-                  1. Se autorizan dos solicitudes http a varias url diferentes como "/api/users" o "/api/users/page/{page}".
+                  1. Se define un bean de tipo llamado PasswordEncoder el cual sirve para encriptar las contraseñas de usuario
+                     que se registran en la base de datos.
+                  2. Se autorizan dos solicitudes http a varias url diferentes como "/api/users" o "/api/users/page/{page}".
                      Ademas se autorizan varias solicitudes http adicionales si el usuario tiene rol USER o ADMIN o ambos.
                      El resto de las solicitudes son permitidas solo si el usuario se encuentra autenticado.
-                  2. Se inhabilita la gestion de una vulnerabilidad por parte de spring security llamada ataque de sitio 
+                  3. Se añade una configuracion de cors en la cual se utiliza un bean de tipo CorsConfigurationSource que
+                     contiene diferentes reglas relativas a la: 
+                        1. Posibilidad de recibir solicitudes http de diferentes origenes o clientes.
+                        2. Metodos http permitidos
+                        3. Cabeceras permitidas en cada solicitud http
+                        4. Credenciales permitidas
+                        5. Para cuales endpoint rest aplica la configuracion de cors
+                  4. Se adicionan dos filtros relativos a la generacion de tokens jwt y a la validacion de tokens jwt.
+                        1. JwtAuthenticationFilter: Es un filtro que se ejecuta cuando se llama al endpoint /login y
+                           se encarga de generar un token jwt y retornarlo al cliente.
+                        2. JwtValidationFilter: Es un filtro que se ejecuta cuando se recibe una solicitud http y esta
+                           incluye en sus cabeceras la cabecera Authorization.
+                  5. Se inhabilita la gestion de una vulnerabilidad por parte de spring security llamada ataque de sitio 
                      cruzado la cual fuerza a un usuario autenticado en una aplicacion a realizar acciones no deseadas
                      como transferir fondos, etc.. Por ejemplo, un atacante inyecta una etiqueta html img en un campo de
                      texto que acepta html en una pagina html de manera que un usuario autenticado puede comprometer sus
                      credenciales.
-                  3. Se indica a spring security que no cree un objeto HttpSession para almacenar la autenticacion de un
+                  6. Se indica a spring security que no cree un objeto HttpSession para almacenar la autenticacion de un
                      usuario entre solicitudes http sino que por cada solicitud http se autentique al usuario.
       * Autenticacion con JWT Authentication Filter
          - Cosas importantes
