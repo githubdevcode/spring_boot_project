@@ -199,8 +199,8 @@ USEFUL COMMANDS (19-08-2024)
                   ser un endpoint rest. El token JWT sirve para autenticar una peticion http cada vez que se requiera acceder
                   a un recurso http.
          - Importante   
-            & Autenticacion con JWT Authentication Filter
-               % Cosas importantes
+            % Autenticacion con JWT Authentication Filter
+               & Cosas importantes
                   1. La clase JwtAuthenticationFilter por debajo llama a la clase JpaUserDetailsService para con el fin de poder 
                      autenticar el usuario que es descrito por las credenciales recibidas que se encuentran en el objeto User.
                      El usuario y la contraseña en el objeto User son comparados con las del usuario que se encuentra en la
@@ -222,11 +222,20 @@ USEFUL COMMANDS (19-08-2024)
                               @ NOTA: La generacion de la llave secreta que es utilizada en la creacion del token jwt es puesta en la
                                  clase TokenJwtConfig debido a que la llave secreta es utilizada tanto en la creacion del token jwt
                                  como en su validacion.
+                              @ NOTA: Un token jwt se representa de la siguiente manera
+                                 # Ejemplo de token jwt
+                                    $ eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjoiW3tcImF1dGhvcml0eVwiOlwiUk9MRV9BRE1JTlwifSx7XCJhdXRob
+                                       3JpdHlcIjpcIlJPTEVfVVNFUlwifV0iLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzI4MDkzNzU0LCJleHAiOjE3MjgwOTczNTR9.aa_ITI
+                                       ZIyy9xdTHM89BZNx_-vKao5c3Yqey-1vuYKD8
+                                          # Partes (separadas por punto)
+                                             1. Algoritmo con el cual se genera el token jwt
+                                             2. El payload del token jwt
+                                             3. La firma del token jwt
                         2.3 En el metodo JwtAuthenticationFilter.unsuccessfulAuthentication se declara la logica relativa a la generacion
                            de una respuesta de error cuando las credenciales de un usuario son invalidas.
                   3. Las dependencias necesarias para que la libreria jwt funcione en nuestro proyecto maven de java son las
                      siguientes:
-                        & pom.xml
+                        # pom.xml
                            @ <dependency>
                      			<groupId>io.jsonwebtoken</groupId>
                      			<artifactId>jjwt-api</artifactId>
@@ -252,5 +261,5 @@ USEFUL COMMANDS (19-08-2024)
                      protegido como puede ser un endpoint rest. Cada token jwt es validado con una llave secreta jwt global. Una vez
                      que el token es validado se extraen las diferentes propiedades que se encuentran en el documento json del token
                      jwt.
-                        & NOTA: La clase JwtValidationFilter es la implementacion de un filtro el cual es llamado BasicAuthenticationFilter
+                        @ NOTA: La clase JwtValidationFilter es la implementacion de un filtro el cual es llamado BasicAuthenticationFilter
                            el cual se ejecuta cada vez que en una solicitud http viene incluida la cabecera Authorization.
