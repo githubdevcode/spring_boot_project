@@ -1,0 +1,201 @@
+SHORTCUTS 30052026_1
+
+1. Useful commands related spring sts.
+	@ List
+		1. Search and Navigation
+			- List
+				1.1 Ctrl + Shift + T
+					- Name
+						! Open Type
+					- Descripcion
+						! Encuentra cualquier codigo fuente de clase java o interfaz java a traves que se encuentre en los archivos del proyecto
+							o en cualquier dependencia externa como un archivo .jar
+				1.2 Ctrl + Shift + R
+					- Name
+						! Open Resource
+					- Descripcion
+						! Encuentra cualquier archivo que no sea un archivo relativo a java como:
+							1. application.properties
+							2.1 fuentes:
+									2.1.1 html
+									2.1.2 css
+									2.1.3 xml
+									2.1.4 etc... 
+							3. etc...
+				1.3 Ctrl + Alt + Shift + L
+					- Name
+						! Quick Search
+					- Descripcion
+						! Permite buscar cualquier texto en:
+							@ Lista
+								1. Todos los archivos de texto que se encuentran en cada uno de los proyectos abiertos.
+								2. Un archivo de texto especifico que se encuentre en alguno de los proyectos abiertos.
+					- Importante
+						1. Como se va escribiendo el texto asi automaticamente se realiza la busqueda de ese texto.
+				1.4 Ctrl + O
+					- Name
+						! Quick Outline
+					- Descripcion
+						! Despliega todas las:
+							@ Lista
+								1. Variables
+								2. Metodos
+							para una navegacion rapida en un elemento java como puede ser:
+								@ Lista
+									1. Clase
+									2. Interface
+									3. etc..
+							
+					- Importante
+						1. Tambien permite buscar por medio de texto cada elemento java descrito.
+				1.5 F3
+					- Name
+						! Open Declaration
+					- Descripcion
+						! Permite ir a la definicion de un elemento en java:
+							@ Lista
+								1. Variable
+								2. Metodo
+								3. Clase
+								4. etc...
+				1.6 F4
+					- Name
+						! Types Hierarchy
+					- Descripcion
+						! Muestra de una clase:
+							@ Lista
+								1. La jerarquia de clases
+								2. Metodos
+								3. Variables
+								4. Subclases
+								5. etc...
+		2. Spring Boot Specific Control
+			- List
+				2.1 Alt + F5
+					- Name
+						! Update Project
+					- Descripcion
+						! Permite actualizar el proyecto local con los ultimos que se describen en el archivo pom.xml
+		3. Coding and Code Generation
+			- List
+				3.6 Ctrl + Space
+					- Name
+						! Content Assist
+					- Descripcion
+						! Permite mostrar una lista con todas las opciones relativas a contenidos de
+							asistencia relativas a un tipo de archivo especifico.
+								@ Lista
+									1. .java
+									2.  application.properties
+									3. css
+									4. js
+									5. etc...
+				3.7 Ctrl + Shift + O
+					- Name
+						! organizes imports
+					- Descripcion
+						! Permite gestionar imports en archivos java:
+							@ Lista
+								1. Añade imports que faltan.
+								2. Elimina imports que no se necesitan.
+				3.8 Ctrl + I
+					- Name
+						! indent
+					- Descripcion
+						! Permite indentar:
+							@ Lista
+								1. Un bloque de codigo
+								2. Varias lineas
+				3.9 Tab
+					- Name
+						!  Right tab
+					- Descripcion
+						! Permite desplazar hacia la derecha:
+							@ Lista
+								1. Una linea de codigo
+								2. Un bloque de codigo
+				3.10 Ctrl + Tab
+					- Name
+						! Left tab
+					- Descripcion
+						! Permite desplazar hacia la izquierda:
+							@ Lista
+								1. Una linea de codigo
+								2. Un bloque de codigo
+				3.11 Ctrl + Shift + F
+					- Name
+						! Formats 
+					- Descripcion
+						! Permite formatear el codigo en un archivo java siguiendo las directrices de identacion
+							configuradas en el editor de codogio.
+				3.12. Ctrl + D
+						- Name
+							! Deletes 
+						- Descripcion
+							! Allows to delete a line of code
+				3.13. Ctrl + /
+						- Name
+							! comments 
+						- Descripcion
+							! Allows to comment a:
+								@ List
+									1. A line of code
+									2. Un bloque de codigo
+		4. Running and Debugging
+			- List
+				4.1 Alt + Shift + X
+					- Name
+						! Ejecutar
+					- Descripcion
+						! Pexrmite ejecutar la aplicacion
+				4.2 Alt + Shift + D
+					- Name
+						! Debug
+					- Descripcion
+						! Permite levantar la aplicacion en modo debug
+		5. Refactorizar codigo
+			- List
+				5.1 Alt + Shift + R
+					- Name
+						! Rename
+					- Descripcion
+						! Permite cambiarle el nombre a un:
+							@ Lista
+								1. Metodo
+								2. Clase
+								3. Vraiable
+								4. etc... 
+				5.2 Alt + Shift + M
+					- Name
+						! Extract Method
+					- Descripcion
+						! Permite seleccionar un codigo y refactorizarlo de manera que quede en un nuevo metodo independiente
+							el cual a su vez se llama desde el metodo original.
+				5.3 Alt + Shift + L
+					- Name
+						! Extract Local Variable
+					- Descripcion
+						! Permite refactorizar un codigo repetitivo en un metodo cualquiera de manera que solo quede una vez
+							referenciado por una variable local.
+				5.4 Alt + Shift + S
+					- Name
+						! Source Menu
+					- Descripcion
+						! Permite desplegar un menu el cual permite realizar distintos tipos de actos en una elemento java:
+							@ Lista
+								1. Generar metodos
+									@ Lista
+										1. Getters
+										2. Setters
+										3. Hash Code
+										4. Equals
+										5. toString
+								2. Generar constructores
+								3. Renombrar metodos
+									@ Lista
+										1. Nombre
+										2. Parametros
+										3. Retorno
+								4. etc...
+				
+					
