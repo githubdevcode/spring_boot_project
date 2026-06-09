@@ -69,6 +69,58 @@ SHORTCUTS 30052026_1
 								3. Variables
 								4. Subclases
 								5. etc...
+				1.7 Ctrl + E
+					- Name
+						! Quick Switch Editor
+					- Descripcion
+						! Abre una lista con recursos abiertos aun y permite ir a ellos como tambien buscarlos e ir.
+				1.8 Ctrl + F6
+					- Name
+						! Next Editor Tab
+					- Descripcion
+						! Es como el comando anterior del punto 1.8 salvo que no hay barra de busqueda y se pasa al
+							siguiente recurso pulsando F6.
+				1.9 Ctrl + M
+					- Name
+						! Maximize Window
+					- Descripcion
+						! Permite abrir y cerrar el panel lateral donde se muestra el proyecto.
+				2.0 Ctrl + W
+					- Name
+						! Close Tab
+					- Descripcion
+						! Permite cerrar un tab abierto.
+				2.1 Ctrl + T
+					- Name
+						! Quick Type Hierarchy
+					- Descripcion
+						! Permite desplegar un cuadro con todos los:
+							@ Lista
+								1. Interfaces
+								2. Super clases
+							que extiende o implementa un elemento java.
+				2.2 Ctrl + Alt + H
+					- Name
+						! Call Hierarchy
+					- Descripcion
+						! Al seleccionar un metodo cualquiera y despues ejecutar este atajo muestra todos los
+							metodos relativos al metodo seleccionado que:
+								@ Lista
+									1. Llaman al metodo seleccionado
+									2. Son llamados por el metodo seleccionado
+				2.3 Alt + Left Arrow
+					- Name
+						! Back / Previous Location
+					- Descripcion
+						! Lleva el puntero del raton al ultimo archivo y linea que se modifico o en el que 
+							se estuvo.
+				2.4 Alt + Right Arrow
+					- Name
+						! Forward Location
+					- Descripcion
+						! Lleva el puntero del raton al proximo archivo y linea que se modifico o en el que 
+							se estuvo.
+				
 		2. Spring Boot Specific Control
 			- List
 				2.1 Alt + F5
@@ -76,7 +128,17 @@ SHORTCUTS 30052026_1
 						! Update Project
 					- Descripcion
 						! Permite actualizar el proyecto local con los ultimos que se describen en el archivo pom.xml
-		3. Coding and Code Generation
+				2.2 Ctrl + 6
+					- Name
+						! The Quick Search command
+					- Descripcion
+						! Abre una lista con elementos que permite buscar y encontrar el elemento que deseamos encontrar:
+							@ Lista
+								1. Beans
+								2. Endpoints rest
+								3. Todos los componentes de spring
+								4. Funciones
+		3. Coding and Code Editing
 			- List
 				3.6 Ctrl + Space
 					- Name
@@ -141,6 +203,24 @@ SHORTCUTS 30052026_1
 								@ List
 									1. A line of code
 									2. Un bloque de codigo
+				3.14 Alt + Up / Down Arrow
+						- Name
+							! Move Lines 
+						- Descripcion
+							! Permite mover una linea hacia:
+								@ Lista
+									1. Arriba
+										- UP Button
+									2. Abajo
+										- DOWN Button
+				3.15 Ctrl + Alt + Up / Down Arrow
+					- Name
+						! Duplicate Lines
+					- Descripcion
+						! Permite duplicar una linea hacia:
+							@ Lista
+								1. Arriba
+								2. Abajo
 		4. Running and Debugging
 			- List
 				4.1 Alt + Shift + X
@@ -153,6 +233,11 @@ SHORTCUTS 30052026_1
 						! Debug
 					- Descripcion
 						! Permite levantar la aplicacion en modo debug
+				4.3 Ctrl + F11
+					- Name
+						! Run Last Launched
+					- Descripcion
+						! Permite volver a ejecutar la aplicacion de la misma manera en la que se ejecuto previamente.
 		5. Refactorizar codigo
 			- List
 				5.1 Alt + Shift + R
@@ -197,5 +282,3 @@ SHORTCUTS 30052026_1
 										2. Parametros
 										3. Retorno
 								4. etc...
-				
-					
