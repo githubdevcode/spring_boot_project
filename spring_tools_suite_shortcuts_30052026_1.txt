@@ -120,6 +120,16 @@ SHORTCUTS 30052026_1
 					- Descripcion
 						! Lleva el puntero del raton al proximo archivo y linea que se modifico o en el que 
 							se estuvo.
+				2.5 Alt + Shift + Q
+					- Name
+						! Show All Views
+					- Descripcion
+						! Permite desplegar un cuadro con distintas opciones relativas a distintos tipos de vistas.
+				2.6 Ctrl + F7
+					- Name
+						! Next View Window
+					- Descripcion
+						! Se despliega un menu que permite ir a los distintos tipos de vistas mas primordiales.
 				
 		2. Spring Boot Specific Control
 			- List
@@ -128,6 +138,11 @@ SHORTCUTS 30052026_1
 						! Update Project
 					- Descripcion
 						! Permite actualizar el proyecto local con los ultimos que se describen en el archivo pom.xml
+					- Importante
+						1. Lo que hace:
+							@ Lista
+								1. Trae o descarga dependencias faltantes.
+								2. Resuelve cualquier error en el classpath.
 				2.2 Ctrl + 6
 					- Name
 						! The Quick Search command
@@ -221,6 +236,45 @@ SHORTCUTS 30052026_1
 							@ Lista
 								1. Arriba
 								2. Abajo
+				3.16 Alt + Shift + A
+					- Name
+						! Toggle Block Selection
+					- Descripcion
+						! Permite seleccionar un bloque de codigo por medio de un cuadro ensanchable de manera que
+							se puede hacer cosas con el texto como:
+								@ Lista
+									1. Añadir mas texto a las lineas de codigo ya existentes
+									2. Escribir texto en varias lineas al mismo tiempo
+									3. Borrar el texto que haya en varias lineas
+					- Importante
+						1. Para volver a cambiar el puntero del mouse a su estado original se debe ejecutar de nuevo
+							este atajo de teclado.
+				3.17 Ctrl + Delete
+					- Name
+						! Delete Next Word
+					- Descripcion
+						! Permite borrar la siguiente palabra desde donde se encuentra ubicado el cursor.
+				3.18 Ctrl + Backspace
+					- Name
+						! Delete Previous Word
+					- Descripcion
+						! Permite borrar la anterior palabra desde donde se encuentra ubicado el cursor.
+				3.19 Ctrl + Shift + X
+					- Name
+						! To Uppercase
+					- Descripcion
+						! Permite convertir el texto seleccionado en un texto en mayuscula.
+				3.20 Ctrl + Shift + Y
+					- Name
+						! To Lowercase
+					- Descripcion
+						! Permite convertir el texto seleccionado en un texto en minuscula.				
+				3.21 Ctrl + D
+					- Name
+						! Delete Line
+					- Descripcion
+						! Permite borrar una linea de codigo entera sin subrayarla.		
+				
 		4. Running and Debugging
 			- List
 				4.1 Alt + Shift + X
@@ -238,6 +292,12 @@ SHORTCUTS 30052026_1
 						! Run Last Launched
 					- Descripcion
 						! Permite volver a ejecutar la aplicacion de la misma manera en la que se ejecuto previamente.
+				4.4 F11 (!FALTA PROBAR)
+					- Name
+						! Debug Application
+					- Descripcion
+						! Permite volver a ejecutar la aplicacion de la misma manera en la que se ejecuto previamente, pero
+							en modo debug.
 		5. Refactorizar codigo
 			- List
 				5.1 Alt + Shift + R
