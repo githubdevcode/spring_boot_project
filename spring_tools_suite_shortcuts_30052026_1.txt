@@ -130,7 +130,80 @@ SHORTCUTS 30052026_1
 						! Next View Window
 					- Descripcion
 						! Se despliega un menu que permite ir a los distintos tipos de vistas mas primordiales.
-				
+							@ Lista
+								1. Editor
+								2. History
+								3. Git Staging
+								4. Package explorer
+								5. etc...
+				2.6 Ctrl + F8
+					- Name
+						! Next Perspective
+					- Descripcion
+						! Se despliega un menu que permite ir a los distintos tipos de perspectivas mas primordiales.
+							@ Lista
+								1. Debug
+								2. Git
+								3. Synchronizing
+								4. etc...
+				2.7 Ctrl + Shift + G
+					- Name
+						! References in Workspace
+					- Descripcion
+						! Permite encontrar los recursos java que referencian otro elemento java como:
+							@ Lista
+								1. Una clase
+								2. Un metodo
+								3. Una variable
+				2.8 Ctrl + M
+					- Name
+						! Maximize Active View
+					- Descripcion
+						! Permite abrir o cerrar el panel lateral de la izquierda.
+				2.9 Ctrl + PageUp / PageDown
+					- Name
+						! Cycle Tabs
+					- Descripcion
+						! Permite navegar hacia el tab de la izquierda o el de la derecha.
+				3.0 Ctrl + Shift + W
+					- Name
+						! Close All Tabs
+					- Descripcion
+						! Permite cerrar todos los tabs abiertos.
+				3.0 Ctrl + Shift + PageDown
+					- Name
+						! Close All Saved Tabs
+					- Descripcion
+						! Permite cerrar todos los tabs abiertos que han sido guardados.
+				3.1 Ctrl + F10
+					- Name
+						! Show View Menu
+					- Descripcion
+						! Permite abrir un menu relativo a la vista actual el cual contiene una lista de opciones
+							ocultas relativas a la vista donde se invoca.
+				3.1 Ctrl + H
+					- Name
+						! Search
+					- Descripcion
+						! Permite abrir un cuadro de busqueda el cual sirve como medio para buscar cualquier texto en el workspace.
+							Ofrece opciones de busqueda como:
+								@ Lista
+									1. Buscar cualquier texto 
+										@ Lista
+											1. En un tipo de archivo o en todos los tipos de archivos
+											2. En uno o mas repositorios de git:
+												@ Lista
+													1. Message text
+													2. Commit Id
+													3. Author
+													4. Commiter
+													5. etc...  
+											3. En los proyectos de tipo Java
+				3.2 Ctrl + Alt + G
+					- Name
+						! Quick Text Search
+					- Descripcion
+						! Busca cualquier texto en el workspace sin tener que utilizar el comando Search anterior.
 		2. Spring Boot Specific Control
 			- List
 				2.1 Alt + F5
@@ -273,8 +346,7 @@ SHORTCUTS 30052026_1
 					- Name
 						! Delete Line
 					- Descripcion
-						! Permite borrar una linea de codigo entera sin subrayarla.		
-				
+						! Permite borrar una linea de codigo entera sin subrayarla.
 		4. Running and Debugging
 			- List
 				4.1 Alt + Shift + X
@@ -342,3 +414,22 @@ SHORTCUTS 30052026_1
 										2. Parametros
 										3. Retorno
 								4. etc...
+		6. Pantalla
+			- Lista
+				6.1 Ctrl + (* + ])
+					- Name
+						! Zoom Text In
+					- Descripcion
+						! Permite aumentar el tamaño del texto tanto de:
+							@ Lista
+								1. La vista de escritura.
+								2. La consola.
+				6.2 Ctrl + (-- _)
+					- Name
+						! Zoom Text Out
+					- Descripcion
+						! Permite disminuir el tamaño del texto tanto de:
+							@ Lista
+								1. La vista de escritura.
+								2. La consola.
+				
