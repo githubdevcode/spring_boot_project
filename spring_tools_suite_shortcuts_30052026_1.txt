@@ -235,6 +235,18 @@ SHORTCUTS 30052026_1
 						! Go to Matching Bracket
 					- Descripcion
 						! Permite saltar hacia las llaves que comprenden el inicio y el final del bloque de codigo. 
+				4.1 Shift + Enter
+					- Name
+						! Insert Row Below
+					 - Descripcion
+						! Permite insertar una fila debajo de la linea en donde tenemos ubicado el puntero del
+							raton y ademas ubica el puntero del raton al inicio de esa linea.
+				4.2 Ctrl + Shift + Enter
+					- Name
+						! Insert Row Above
+					 - Descripcion
+						! Permite insertar una fila por encima de la linea en donde tenemos ubicado el puntero del
+							raton y ademas ubica el puntero del raton al inicio de esa linea.
 		2. Spring Boot Specific Control
 			- List
 				2.1 Alt + F5
@@ -481,4 +493,3 @@ SHORTCUTS 30052026_1
 					 - Descripcion
 						! Permite eliminar un bloque de comentario al solo dar click previamente con el puntero
 							el mouse dentro del bloque.
-				
