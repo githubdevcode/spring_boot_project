@@ -136,7 +136,10 @@ SHORTCUTS 30052026_1
 								3. Git Staging
 								4. Package explorer
 								5. etc...
-				2.6 Ctrl + F8
+					- Importante
+						1. Para ir hacia atras se debe pulsar el comando:
+							- Ctrl + Shift + F7
+				2.7 Ctrl + F8
 					- Name
 						! Next Perspective
 					- Descripcion
@@ -146,7 +149,7 @@ SHORTCUTS 30052026_1
 								2. Git
 								3. Synchronizing
 								4. etc...
-				2.7 Ctrl + Shift + G
+				2.8 Ctrl + Shift + G
 					- Name
 						! References in Workspace
 					- Descripcion
@@ -155,33 +158,33 @@ SHORTCUTS 30052026_1
 								1. Una clase
 								2. Un metodo
 								3. Una variable
-				2.8 Ctrl + M
+				2.9 Ctrl + M
 					- Name
 						! Maximize Active View
 					- Descripcion
 						! Permite abrir o cerrar el panel lateral de la izquierda.
-				2.9 Ctrl + PageUp / PageDown
+				3.0 Ctrl + PageUp / PageDown
 					- Name
 						! Cycle Tabs
 					- Descripcion
 						! Permite navegar hacia el tab de la izquierda o el de la derecha.
-				3.0 Ctrl + Shift + W
+				3.1 Ctrl + Shift + W
 					- Name
 						! Close All Tabs
 					- Descripcion
 						! Permite cerrar todos los tabs abiertos.
-				3.0 Ctrl + Shift + PageDown
+				3.2 Ctrl + Shift + PageDown
 					- Name
 						! Close All Saved Tabs
 					- Descripcion
 						! Permite cerrar todos los tabs abiertos que han sido guardados.
-				3.1 Ctrl + F10
+				3.3 Ctrl + F10
 					- Name
 						! Show View Menu
 					- Descripcion
 						! Permite abrir un menu relativo a la vista actual el cual contiene una lista de opciones
 							ocultas relativas a la vista donde se invoca.
-				3.1 Ctrl + H
+				3.4 Ctrl + H
 					- Name
 						! Search
 					- Descripcion
@@ -199,11 +202,39 @@ SHORTCUTS 30052026_1
 													4. Commiter
 													5. etc...  
 											3. En los proyectos de tipo Java
-				3.2 Ctrl + Alt + G
+				3.5 Ctrl + Alt + G
 					- Name
 						! Quick Text Search
 					- Descripcion
 						! Busca cualquier texto en el workspace sin tener que utilizar el comando Search anterior.
+				3.6 Alt + Shift + W
+					- Name
+						! Show In Menu
+					- Descripcion
+						! Abre un menu con una lista de vistas en donde al elegir una te lleva a la ubicacion exacta en 
+							el proyecto java en donde se encuentra el archivo abierto en el editor.
+				3.7 Shift + F2
+					- Name
+						! Open External Documentation
+					- Descripcion
+						! Te lleva a la ubicacion exacta en donde la documentacion de por ejemplo:
+							@ Lista
+								1. Una clase java.
+				3.8 Ctrl + L
+					- Name
+						! Go to Line
+					- Descripcion
+						! Abre un cuadro de dialogo en donde te pide un numero de linea y te lleva a esa linea en con:
+				3.9 Ctrl + Shift + Up / Down Arrow
+					- Name
+						! Jump to Next/Previous Member
+					- Descripcion
+						! Permite saltar de un metodo al siguiente metodo dentro de la misma clase. 
+				4.0 Ctrl + Shift + P
+					- Name
+						! Go to Matching Bracket
+					- Descripcion
+						! Permite saltar hacia las llaves que comprenden el inicio y el final del bloque de codigo. 
 		2. Spring Boot Specific Control
 			- List
 				2.1 Alt + F5
@@ -432,4 +463,22 @@ SHORTCUTS 30052026_1
 							@ Lista
 								1. La vista de escritura.
 								2. La consola.
+		7. Comments
+			- Lista
+				7.1 Ctrl + (7 /) 
+					- Name
+						! Toggle Row Comment
+					 - Descripcion
+						! Permite comentar una linea de codigo o añadir un comentario.
+				7.2 Ctrl + Shift + | 
+					- Name
+						! Add Block Comment
+					 - Descripcion
+						! Permite añadir un bloque de comentario.
+				7.3 Ctrl + Shift + 1
+					- Name
+						! Remove Block Comment
+					 - Descripcion
+						! Permite eliminar un bloque de comentario al solo dar click previamente con el puntero
+							el mouse dentro del bloque.
 				
